@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <title>BaublesAPI Docs.</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
+    </head>
+    <body>
+        <h1>BaublesAPI Docs.</h1>
+        <p>Index:</p>
+        <ul>
+            <li><a href="#gs"><p>Getting started.</p></a></li>
+            <li><a href="#cb"><p>Create Bauble.</p></a></li>
+        </ul>
+        <!--Getting started-->
+        <h2 id="gs">Getting started:</h2>
+        <p style="padding-left: 10px;"><b>Note:</b> If you are looking into data driven Baubles you don't need this. Click <a href="#dd">here</a>.</p>
+        <p style="padding-left: 10px;">First we need to add Baubles to the dev environment.</p>
+        <p style="padding-left: 10px;"><b>1.</b> In your <b>build.gradle</b> add <b>Jitpack</b> to the project repositories.</p>
+        <div class="code">
+            <p>repositories {</p>
+            <p style="padding-left: 10px;">...</p>
+            <p style="padding-left: 10px;">maven {</p>
+            <p style="padding-left: 20px;">url 'https://jitpack.io'</p>
+            <p style="padding-left: 10px;">}</p>
+            <p>}</p>
+        </div>
+        <p style="padding-left: 10px;"><b>2.</b> Then add the Baubles dependency to the project dependencies.</p>
+        <div class="code">
+            <p>dependencies {</p>
+            <p style="padding-left: 10px;">compile 'com.github.lazyMods:Baubles:{version}'</p>
+            <p>}</p>
+        </div>
+        <p style="padding-left: 10px;"><b>Note:</b> {version} is the latest version of Bauble for the Minecraft version that you are working on.</p>
+        <p style="padding-left: 10px;"><b>Example:</b></p>
+        <p style="padding-left: 15px;">If you are working on Minecraft 1.16.4, the latest version of Baubles is 1.18.3.</p>
+        <p style="padding-left: 15px;">See more in <a href="https://github.com/lazyMods/Baubles/releases">here</a>.</p>
+        <!--How to create an Bauble-->
+        <h2 id="cb">How to create an Bauble:</h2>
+        <p style="padding-left: 10px;">Currently Baubles has two ways to create an Bauble.</p>
+        <p style="padding-left: 10px;"><b>1.</b> Creating a new Item and implementing the <b>IBauble</b> interface.</p>
+        <div class="code">
+            <p>public class <b>BaubleTest</b> extends <b>Item</b> implements <b>IBauble</b> {</p>
+            <br>
+            <p style="padding-left: 10px;">public <b>BaubleTest</b>(Properties properties) {</p>
+            <p style="padding-left: 20px;">super(properties);</p>
+            <p style="padding-left: 10px;">}</p>
+            <br>
+            <p style="padding-left: 10px;">@Override</p>
+            <p style="padding-left: 10px;">public <b>BaubleType</b> getBaubleType() {</p>
+            <p style="padding-left: 20px;">return {BaubleType};</p>
+            <p style="padding-left: 10px;">}</p>
+            <p>}</p>
+        </div>
+        <p style="padding-left: 10px;"><b>Note:</b> See <a href="https://github.com/lazyMods/Baubles/blob/1.16.2/src/main/java/com/lazy/baubles/api/bauble/BaubleType.java">BaubleTypes</a> to know the types of Baubles that {BaubleType} can return.</p>
+        <p style="padding-left: 10px;"><b>Note:</b> IBauble has more methods that gives you the hability to have more control over the Bauble. <b>getBaubleType()</b> is required to assign the Bauble to the correct slot.</p>
+        <p style="padding-left: 10px;"><b>Note:</b> Check <a href="https://github.com/lazyMods/Baubles/blob/1.16.2/src/main/java/com/lazy/baubles/api/bauble/IBauble.java">IBauble</a> to understand more about it.</p>
+        <p id="dd" style="padding-left: 10px;"><b>2.</b> Data driven Baubles. (BETA)</p>
+        <p style="padding-left: 10px;"><b>WARN!</b> Data-driven Baubles don't have a way to craft them.</p>
+        <p style="padding-left: 10px;">If you are familiar with the new way that Minecraft is using .json files to give you more customization in your world, Baubles does the same by adding a way to add Baubles with .json files.</p>
+        <p style="padding-left: 10px;">First you need to create a file in <b>%GAMEDIR/baubles/</b>. (The name doesn't matter and be sure that the extension is <b>.json</b>)</p>
+        <p style="padding-left: 10px;">Below we have an example with all the parameters that we can use, but some of those are optional, as you will see in a bit.</p>
+        <div class="code">
+            <p>{</p>
+            <p style="padding-left: 10px;">"registryName": "ring_fire",</p>
+            <p style="padding-left: 10px;">"type": "ring",</p>
+            <p style="padding-left: 10px;">"glint": false,</p>
+            <p style="padding-left: 10px;">"displayName": "Ring Fire",</p>
+            <p style="padding-left: 10px;">"requireMod": [</p>
+            <p style="padding-left: 20px;">"woodenutilities"</p>
+            <p style="padding-left: 10px;">],</p>
+            <p style="padding-left: 10px;">"tooltips": [</p>
+            <p style="padding-left: 20px;">"Saves you from fire",</p>
+            <p style="padding-left: 20px;">"Thats good right?"</p>
+            <p style="padding-left: 10px;">],</p>
+            <p style="padding-left: 10px;">"effects": [</p>
+            <p style="padding-left: 20px;">{</p>
+            <p style="padding-left: 30px;">"effectLevel": 4,</p>
+            <p style="padding-left: 30px;">"effectRegistryName": "minecraft:fire_resistance"</p>
+            <p style="padding-left: 20px;">},</p>
+            <p style="padding-left: 20px;">{</p>
+            <p style="padding-left: 30px;">"effectLevel": 4,</p>
+            <p style="padding-left: 30px;">"effectRegistryName": "minecraft:luck"</p>
+            <p style="padding-left: 20px;">},</p>
+            <p style="padding-left: 10px;">],</p>
+            <p style="padding-left: 10px;">"showEffectsTooltip": false</p>
+            <p>}</p>
+        </div>
+        <ul>
+            <li>
+                <b>registryName</b> (mandatory)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- unique name used to differentiate the Baubles.</p>
+            </li>
+            <li>
+                <b>type</b> (optional)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- Bauble Type that defines the slot of the Bauble.</p>
+                <p style="margin-top: 10px; margin-bottom: 0px; margin-left: 10px;">- <b>BaubleType.AMULET</b> = "amulet".</p>
+                <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 10px;">- <b>BaubleType.RING</b> = "ring".</p>
+                <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 10px;">- <b>BaubleType.BELT</b> = "belt".</p>
+                <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 10px;">- <b>BaubleType.HEAD</b> = "head".</p>
+                <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 10px;">- <b>BaubleType.BODY</b> = "body".</p>
+                <p style="margin-top: 0px; margin-bottom: 10px; margin-left: 10px;">- <b>BaubleType.CHARM</b> = "charm".</p>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- <b>NOTE:</b> If you don't specify the Bauble Type or insert something that the isn´t above, the game will automatically set the BaubleType to Trinket. This means that your Bauble will be able to fit in all the slots available.</p>
+            </li>
+            <li>
+                <b>glint</b> (optional)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- adds the enchantment effect to your Bauble.</p>
+            </li>
+            <li>
+                <b>displayName</b> (mandatory)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- The Bauble name in game.</p>
+            </li>
+            <li>
+                <b>requireMod</b> (optional)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- List of ids that your Bauble requires to be added. This is mostly needed when you want to add effects or recipes that depends on the other mods.</p>
+            </li>
+            <li>
+                <b>tooltilps</b> (optional)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- Add more information to Bauble.</p>
+            </li>
+            <li>
+                <b>effects</b> (optional)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- When your Bauble is equipped, the effects that you define will be added to the player.</p>
+            </li>
+            <li>
+                <b>showEffectsTooltip</b> (optional)<br>
+                <p style="margin-top: 0px; margin-bottom: 0px;">- If true, the Bauble Item will show the effects in the tooltip area.</p>
+            </li>
+        </ul>
+        <p style="padding-left: 10px;"><b>Note: </b>This params can be changed while the game is running! Type <b>/reload</b> and all the changes will be loaded.</p>
+    </body>
+</html>
