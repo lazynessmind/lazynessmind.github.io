@@ -36,3 +36,8 @@ body {
 .day h5 {
     margin-bottom: 5px;
 }
+
+.day img {
+    margin-top: 5px;
+    margin-left: 10px;
+}
